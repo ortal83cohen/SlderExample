@@ -58,35 +58,19 @@ public class MainActivity extends Activity {
 
         SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(this);
 
-        MEDIA_PATH = Environment.getExternalStorageDirectory().getPath() + "/DCIM/Camera";
-        File home = new File(MEDIA_PATH);
-        File[] listFiles = home.listFiles();
-        int i = 1;
-        Bitmap bit = null;
-        for (File file : listFiles) {
-            if (!file.isFile()) {
-                continue;
-            }
-            try {
+        adapter.add(new CardModel("Title1", "Description goes here1", r.getDrawable(R.drawable.picture1)));
+        adapter.add(new CardModel("Title2", "Description goes here2", r.getDrawable(R.drawable.picture2)));
+        adapter.add(new CardModel("Title3", "Description goes here3", r.getDrawable(R.drawable.picture3)));
+        adapter.add(new CardModel("Title4", "Description goes here4", r.getDrawable(R.drawable.picture1)));
+        adapter.add(new CardModel("Title5", "Description goes here5", r.getDrawable(R.drawable.picture2)));
+        adapter.add(new CardModel("Title6", "Description goes here6", r.getDrawable(R.drawable.picture3)));
 
-//                bit = BitmapFactory.decodeFile(file.getPath());
-                bit =Bitmap.createScaledBitmap(BitmapFactory.decodeFile(file.getPath()),1200,1600,false);
-//                bit =Bitmap.createBitmap(BitmapFactory.decodeFile(file.getPath()));
-//                Drawable drawable = Drawable.createFromPath(file.getPath());
-                adapter.add(new CardModel(file.getName(), "Description goes here", bit));
-            } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), (CharSequence) e.getMessage(),
-                        Toast.LENGTH_SHORT).show();
-            }
-        }
 
-        CardModel cardModel = new CardModel("Title1", "Description goes here",
-                bit);
+        CardModel cardModel = new CardModel("Title1", "Description goes here7", r.getDrawable(R.drawable.picture1));
         cardModel.setOnClickListener(new CardModel.OnClickListener() {
             @Override
             public void OnClickListener() {
-                Toast.makeText(getApplicationContext(), "I am pressing the card", Toast.LENGTH_LONG)
-                        .show();
+                Log.i("Swipeable Cards","I am pressing the card");
             }
         });
 
